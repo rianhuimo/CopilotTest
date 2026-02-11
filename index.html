@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Advanced AI-Powered Website with Modern Features">
+    <meta name="theme-color" content="#667eea">
+    <title>FutureWeb - Advanced AI Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particle Background Canvas -->
+    <canvas id="particleCanvas"></canvas>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🚀</span>
+                <span class="logo-text">FutureWeb</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#features" class="nav-link">Features</a></li>
+                <li><a href="#ai-showcase" class="nav-link">AI Showcase</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="theme-icon">🌙</span>
+            </button>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Next-Generation</span><br>
+                Web Experience
+            </h1>
+            <p class="hero-subtitle">Powered by AI • Built for the Future • Designed for You</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" id="exploreBtn">Explore Features</button>
+                <button class="btn btn-secondary" id="demoBtn">View Demo</button>
+            </div>
+            <div class="scroll-indicator">
+                <div class="mouse">
+                    <div class="wheel"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features-section">
+        <div class="container">
+            <h2 class="section-title">Advanced Features</h2>
+            <div class="features-grid">
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">⚡</div>
+                    <h3>Lightning Fast</h3>
+                    <p>Optimized performance with lazy loading and code splitting for instant page loads</p>
+                    <div class="feature-stats">
+                        <span class="stat">99/100</span>
+                        <span class="stat-label">Performance Score</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">🎨</div>
+                    <h3>Modern Design</h3>
+                    <p>Beautiful UI with glassmorphism, gradients, and smooth animations</p>
+                    <div class="feature-stats">
+                        <span class="stat">100%</span>
+                        <span class="stat-label">Responsive</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI-Powered</h3>
+                    <p>Machine learning algorithms for personalized user experiences</p>
+                    <div class="feature-stats">
+                        <span class="stat">24/7</span>
+                        <span class="stat-label">Smart Support</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure</h3>
+                    <p>Enterprise-grade security with encryption and privacy protection</p>
+                    <div class="feature-stats">
+                        <span class="stat">256-bit</span>
+                        <span class="stat-label">Encryption</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">📱</div>
+                    <h3>PWA Ready</h3>
+                    <p>Progressive Web App with offline support and installability</p>
+                    <div class="feature-stats">
+                        <span class="stat">Offline</span>
+                        <span class="stat-label">Mode Available</span>
+                    </div>
+                </div>
+                <div class="feature-card" data-tilt>
+                    <div class="feature-icon">🌐</div>
+                    <h3>Global CDN</h3>
+                    <p>Content delivery network for blazing-fast worldwide access</p>
+                    <div class="feature-stats">
+                        <span class="stat">&lt;50ms</span>
+                        <span class="stat-label">Latency</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Showcase Section -->
+    <section id="ai-showcase" class="ai-showcase">
+        <div class="container">
+            <h2 class="section-title">AI Technologies Showcase</h2>
+            <div class="ai-grid">
+                <div class="ai-card neural-network">
+                    <canvas id="neuralCanvas" class="ai-canvas"></canvas>
+                    <div class="ai-info">
+                        <h3>Neural Networks</h3>
+                        <p>Deep learning visualization with real-time processing</p>
+                        <button class="btn-small" id="trainNetworkBtn">Train Network</button>
+                    </div>
+                </div>
+                <div class="ai-card sentiment-analyzer">
+                    <div class="ai-info">
+                        <h3>Sentiment Analysis</h3>
+                        <textarea id="sentimentInput" placeholder="Type your message here..."></textarea>
+                        <div class="sentiment-result" id="sentimentResult">
+                            <div class="sentiment-meter">
+                                <div class="sentiment-bar" id="sentimentBar"></div>
+                            </div>
+                            <p id="sentimentText">Analyze your text sentiment</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="ai-card pattern-recognition">
+                    <div class="ai-info">
+                        <h3>Pattern Recognition</h3>
+                        <canvas id="patternCanvas" class="interactive-canvas"></canvas>
+                        <p>Draw a pattern and watch AI recognize it</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Gallery -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Interactive Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Abstract Art</h3>
+                        <p>AI-Generated Masterpiece</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Digital Design</h3>
+                        <p>Modern Interface Concept</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Tech Innovation</h3>
+                        <p>Future of Computing</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Green Tech</h3>
+                        <p>Sustainable Solutions</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Creative Vision</h3>
+                        <p>Artistic Expression</p>
+                    </div>
+                </div>
+                <div class="gallery-item" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                    <div class="gallery-overlay">
+                        <h3>Deep Space</h3>
+                        <p>Cosmic Exploration</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10000">0</div>
+                    <div class="stat-label">Active Users</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Countries Reached</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="24">0</div>
+                    <div class="stat-label">Hours Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <input type="text" id="name" placeholder="Your Name" required>
+                    <input type="email" id="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" placeholder="Your Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+            <div class="form-status" id="formStatus"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>FutureWeb</h3>
+                    <p>Building the future of web experiences with AI-powered technology.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#ai-showcase">AI Showcase</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link">Twitter</a>
+                        <a href="#" class="social-link">GitHub</a>
+                        <a href="#" class="social-link">LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 FutureWeb. Crafted with AI ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
