@@ -25,7 +25,8 @@ class ParticleSystem {
     }
 
     createParticles() {
-        const particleCount = Math.min(100, Math.floor((this.canvas.width * this.canvas.height) / 15000));
+        const PIXELS_PER_PARTICLE = 15000; // Density: one particle per 15000 pixels
+        const particleCount = Math.min(100, Math.floor((this.canvas.width * this.canvas.height) / PIXELS_PER_PARTICLE));
         for (let i = 0; i < particleCount; i++) {
             this.particles.push({
                 x: Math.random() * this.canvas.width,
@@ -224,6 +225,8 @@ class StatsCounter {
     animateCounters() {
         document.querySelectorAll('.stat-number').forEach(counter => {
             const target = parseInt(counter.getAttribute('data-target'));
+            const originalText = counter.textContent;
+            const hasPercent = originalText.includes('%');
             const duration = 2000;
             const step = target / (duration / 16);
             let current = 0;
@@ -231,10 +234,10 @@ class StatsCounter {
             const updateCounter = () => {
                 current += step;
                 if (current < target) {
-                    counter.textContent = Math.floor(current).toLocaleString();
+                    counter.textContent = Math.floor(current).toLocaleString() + (hasPercent ? '%' : '');
                     requestAnimationFrame(updateCounter);
                 } else {
-                    counter.textContent = target.toLocaleString() + (counter.textContent.includes('%') ? '%' : '');
+                    counter.textContent = target.toLocaleString() + (hasPercent ? '%' : '');
                 }
             };
 
@@ -351,6 +354,12 @@ class SentimentAnalyzer {
         this.bar = document.getElementById('sentimentBar');
         this.text = document.getElementById('sentimentText');
         
+        // Define sentiment word lists as class properties
+        this.positiveWords = ['good', 'great', 'excellent', 'amazing', 'wonderful', 'fantastic', 
+                             'love', 'happy', 'joy', 'perfect', 'best', 'awesome', 'brilliant'];
+        this.negativeWords = ['bad', 'terrible', 'awful', 'horrible', 'hate', 'sad', 'angry', 
+                             'worst', 'poor', 'disappointing', 'frustrating', 'annoying'];
+        
         if (!this.input) return;
         this.init();
     }
@@ -362,19 +371,14 @@ class SentimentAnalyzer {
     analyze() {
         const text = this.input.value.toLowerCase();
         
-        const positiveWords = ['good', 'great', 'excellent', 'amazing', 'wonderful', 'fantastic', 
-                              'love', 'happy', 'joy', 'perfect', 'best', 'awesome', 'brilliant'];
-        const negativeWords = ['bad', 'terrible', 'awful', 'horrible', 'hate', 'sad', 'angry', 
-                              'worst', 'poor', 'disappointing', 'frustrating', 'annoying'];
-        
         let positiveCount = 0;
         let negativeCount = 0;
         
-        positiveWords.forEach(word => {
+        this.positiveWords.forEach(word => {
             if (text.includes(word)) positiveCount++;
         });
         
-        negativeWords.forEach(word => {
+        this.negativeWords.forEach(word => {
             if (text.includes(word)) negativeCount++;
         });
         
@@ -409,6 +413,7 @@ class PatternRecognition {
         
         this.ctx = this.canvas.getContext('2d');
         this.drawing = false;
+        this.patterns = ['Circle', 'Square', 'Triangle', 'Star', 'Heart'];
         this.init();
     }
 
@@ -468,8 +473,7 @@ class PatternRecognition {
     recognizePattern() {
         // Simple pattern recognition simulation
         setTimeout(() => {
-            const patterns = ['Circle', 'Square', 'Triangle', 'Star', 'Heart'];
-            const recognized = patterns[Math.floor(Math.random() * patterns.length)];
+            const recognized = this.patterns[Math.floor(Math.random() * this.patterns.length)];
             
             this.ctx.fillStyle = 'rgba(102, 126, 234, 0.9)';
             this.ctx.font = 'bold 24px Inter';

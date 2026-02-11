@@ -15,11 +15,23 @@ self.addEventListener('install', event => {
   );
 });
 
-// Fetch from cache
+// Fetch from cache with error handling
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
+      .then(response => {
+        if (response) {
+          return response;
+        }
+        return fetch(event.request).catch(() => {
+          // Return a basic offline response if both cache and network fail
+          return new Response('Offline - content not available', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: new Headers({ 'Content-Type': 'text/plain' })
+          });
+        });
+      })
   );
 });
 
